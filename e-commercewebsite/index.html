@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="fontawesome-free-5.15.3-web/css/all.css">
+    <link rel="stylesheet" href="fontawesome-free-5.15.3-web/css/all.min.css">
+    <!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>E-commerce Website</title>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+          <div class="logo"><a href="#">E-commerce</a></div>
+          
+          <div class="cart">
+              <a href="cart"> <i class="fas fa-shopping-cart"> </i> </a><div class="countcontainer" id="countcontainer">0</div>
+        </div>
+    
+        </div>
+      </nav>  
+    
+
+
+<div class="homepageflex">
+
+    <div class="categories">
+        <div class="categoriescontainer">
+            <h2>categories</h2>
+
+           <div class="smt"> 
+               <p>smart phone : </p>
+              <p id="num">3</p>
+        </div>
+
+        <div class="smt"> 
+            <p>laptop : </p>
+           <p id="num">5</p>
+     </div>
+
+     <div class="smt"> 
+        <p>home-decoration : </p>
+       <p id="num">3</p>
+ </div>
+
+ <div class="smt"> 
+    <p>groceries : </p>
+   <p id="num">1</p>
+</div>
+
+<div class="smt"> 
+    <p>skincare : </p>
+   <p id="num">6</p>
+</div>
+        </div>
+    </div>
+
+
+<div class="productcontainer" >
+    <!-- flex for cart -->
+<div class="productrow" id="prdcontainer">
+
+<!-- ================================== -->
+    
+<!-- ==================================== -->
+
+
+
+
+
+</div>    
+</div>
+
+
+</div>
+
+<script>
+    fetch('http://dummyjson.com/products').then(res =>res.json()).then(data =>{
+        let datasave = "";
+        data.products.forEach(element => {
+            datasave += 
+            ` <a href="productDetails/home.html?getid=${element.id}">
+    <div class="productrowcontainer">
+       <div class="productimage">
+           <img src="${element.images[0]}" alt="">
+       </div>
+
+       <div class="productname">
+        <h4>${element.title}</h4>
+       </div>
+         
+       <div class="description">
+           <h4>${element.description}</h4>
+       </div>
+
+       <div class="productprice">
+        <h4> <span class="price">Price :</span> € ${element.price}</h4>
+        <h6> <span>discount percentage: </span>${element.discountPercentage}%</h6>
+       </div>
+
+       <h2> <span class="fa fa-star checked"></span>${element.rating}</h2>
+       
+
+    </div>
+</a> `
+        });
+document.getElementById('prdcontainer').innerHTML = datasave;
+
+    })
+
+    function cartNumber() {
+    let count = 0;
+    let cartItem = JSON.parse(localStorage.getItem('prdInCart'))
+   cartItem.forEach(element => {
+       count = element.quantity +=count;
+   });
+   document.getElementById('countcontainer').innerText = count;
+}
+cartNumber();
+</script>
+
+
+
+
+</body>
+</html>

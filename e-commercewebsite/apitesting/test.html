@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cart.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="productflex">
+
+        <div class="imgflex">
+        
+        <div class="imgcontainer"  id="imgcontainer">
+           
+        </div>
+        </div>
+        
+        
+        <!-- another container -->
+        <div class="summarycontainer">
+            <div class="header"><h1> order summary</h1></div>
+            <div class="pr"><h4>price</h4></div>
+            <div class="pr"><h4>delivery fee</h4></div>
+        
+            <button>proceed to check out</button>
+        </div>
+        
+        
+        </div>
+
+
+    <script>
+   
+  
+
+   fetch('http://dummyjson.com/products').then(res =>res.json()).then(data => {
+       let imagedata = "";
+       data.products.forEach(element => {
+        console.log(element.images[0]);
+         imagedata += `
+         <img src="element.images[0]" alt="">
+         `
+       });
+       document.getElementById('imgcontainer').innerHTML = imagedata;
+   })
+
+
+//    fetch('https://dummyjson.com/products')
+// .then(res => res.json())
+// .then(json => console.log(json))
+
+    </script>
+</body>
+</html>
